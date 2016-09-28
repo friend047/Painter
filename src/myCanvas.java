@@ -34,8 +34,7 @@ public class myCanvas extends JFrame implements ActionListener// extends Canvas/
 	JButton redo_btn = new JButton();
 	JButton eraser_btn = new JButton();	
 	JButton increaseStroke_btn = new JButton();
-	JButton decreaseStroke_btn = new JButton();
-	JButton test_btn = new JButton();
+	JButton decreaseStroke_btn = new JButton();    
 	
 	/*public void Print(String str) {
 		System.out.println(str);
