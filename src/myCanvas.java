@@ -36,12 +36,9 @@ public class myCanvas extends JFrame implements ActionListener// extends Canvas/
 	JButton increaseStroke_btn = new JButton();
 	JButton decreaseStroke_btn = new JButton();    
 	Color button_color = new Color(102,204,255);
-	
 	/*public void Print(String str) {
 		System.out.println(str);
 	}*/
-	
-	
 	myCanvas() {
 		// create frame
 		this.setTitle("小畫家"); //set title
@@ -132,11 +129,12 @@ public class myCanvas extends JFrame implements ActionListener// extends Canvas/
 		this.add(undo_btn);
 		
 		// add clear button
-		clear_btn.setText("Clear");
-		clear_btn.setBackground(button_color);
+		initbutton("clear", button_color, clear_btn);
+		//clear_btn.setText("Clear");
+		//clear_btn.setBackground(button_color);
 		clear_btn.setBounds(512, 432, 72, 30);
-		clear_btn.addActionListener(this);
-		this.add(clear_btn);
+		//clear_btn.addActionListener(this);
+		//this.add(clear_btn);
 
 		this.add(panel); //add panel to frame
 		Mousemotionlistener mouse_listener = new Mousemotionlistener(this); //add mouse listener on frame
@@ -144,7 +142,12 @@ public class myCanvas extends JFrame implements ActionListener// extends Canvas/
 		this.addMouseListener(mouse_listener);
 		this.setVisible(true); //open the windows
 	}
-	 
+	public void initbutton(String button_name, Color button_color, JButton button){
+		button.setText(button_name);
+		button.setBackground(button_color);
+		button.addActionListener(this);
+		this.add(button);
+	} 
 	Shape_button shape_button = Shape_button.Path;
 	Shape remove_list;
 	Color shape_color;
