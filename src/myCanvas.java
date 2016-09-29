@@ -35,7 +35,7 @@ public class myCanvas extends JFrame implements ActionListener// extends Canvas/
 	JButton eraser_btn = new JButton();	
 	JButton increaseStroke_btn = new JButton();
 	JButton decreaseStroke_btn = new JButton();    
-	Color button_color = new Color(102,204,255);
+	Color button_background = new Color(102,204,255);
 	/*public void Print(String str) {
 		System.out.println(str);
 	}*/
@@ -52,89 +52,41 @@ public class myCanvas extends JFrame implements ActionListener// extends Canvas/
 		panel.setBounds(500, 0, 94, 472); //set panel size
 
 		// add black button
-		black_btn.setText("Black");
-		black_btn.setBackground(button_color);
+		initbutton("Black", button_background, black_btn);
 		black_btn.setBounds(512, 10, 72, 30);
-		black_btn.addActionListener(this);
-		this.add(black_btn);
-
 		// add blue button
-		blue_btn.setText("Blue");
-		blue_btn.setBackground(button_color);
+		initbutton("Blue", button_background, blue_btn);
 		blue_btn.setBounds(512, 50, 72, 30);
-		blue_btn.addActionListener(this);
-		this.add(blue_btn);
-
 		// add red button
-		red_btn.setText("Red");
-		red_btn.setBackground(button_color);
+		initbutton("Red", button_background, red_btn);
 		red_btn.setBounds(512, 90, 72, 30);
-		red_btn.addActionListener(this);
-		this.add(red_btn);
-
 		// add path button
-		path_btn.setText("Path");
-		path_btn.setBackground(button_color);
+		initbutton("Path", button_background, path_btn);
 		path_btn.setBounds(512, 140, 72, 30);
-		path_btn.addActionListener(this);
-		this.add(path_btn);
-
 		// add rect button
-		rect_btn.setText("Rect");
-		rect_btn.setBackground(button_color);
+		initbutton("Rect", button_background, rect_btn);
 		rect_btn.setBounds(512, 180, 72, 30);
-		rect_btn.addActionListener(this);
-		this.add(rect_btn);
-		
 		// add line button
-		line_btn.setText("Line");
-		line_btn.setBackground(button_color);
+		initbutton("Line", button_background, line_btn);
 		line_btn.setBounds(512, 220, 72, 30);
-		line_btn.addActionListener(this);
-		this.add(line_btn);
-		
 		// add increase stroke button
-		increaseStroke_btn.setText("+");
-		increaseStroke_btn.setBackground(button_color);
+		initbutton("+", button_background, increaseStroke_btn);
 		increaseStroke_btn.setBounds(550, 272, 41, 30);
-		increaseStroke_btn.addActionListener(this);
-		this.add(increaseStroke_btn);
-		
 		// add increase stroke button
-		decreaseStroke_btn.setText("-");
-		decreaseStroke_btn.setBackground(button_color);
+		initbutton("-", button_background, decreaseStroke_btn);
 		decreaseStroke_btn.setBounds(505, 272, 41, 30);
-		decreaseStroke_btn.addActionListener(this);
-		this.add(decreaseStroke_btn);
-		
 		// add eraser button
-		eraser_btn.setText("Eraser");
-		eraser_btn.setBackground(button_color);
+		initbutton("Eraser", button_background, eraser_btn);
 		eraser_btn.setBounds(512, 312, 72, 30);
-		eraser_btn.addActionListener(this);
-		this.add(eraser_btn);
-		
 		// add redo button
-		redo_btn.setText("Redo");
-		redo_btn.setBackground(button_color);
+		initbutton("Redo", button_background, redo_btn);
 		redo_btn.setBounds(512, 352, 72, 30);
-		redo_btn.addActionListener(this);
-		this.add(redo_btn);
-		
 		// add undo button
-		undo_btn.setText("Undo");
-		undo_btn.setBackground(button_color);
+		initbutton("Undo", button_background, undo_btn);
 		undo_btn.setBounds(512, 392, 72, 30);
-		undo_btn.addActionListener(this);
-		this.add(undo_btn);
-		
 		// add clear button
-		initbutton("clear", button_color, clear_btn);
-		//clear_btn.setText("Clear");
-		//clear_btn.setBackground(button_color);
+		initbutton("clear", button_background, clear_btn);
 		clear_btn.setBounds(512, 432, 72, 30);
-		//clear_btn.addActionListener(this);
-		//this.add(clear_btn);
 
 		this.add(panel); //add panel to frame
 		Mousemotionlistener mouse_listener = new Mousemotionlistener(this); //add mouse listener on frame
@@ -142,9 +94,10 @@ public class myCanvas extends JFrame implements ActionListener// extends Canvas/
 		this.addMouseListener(mouse_listener);
 		this.setVisible(true); //open the windows
 	}
-	public void initbutton(String button_name, Color button_color, JButton button){
+	// initialize button
+	public void initbutton(String button_name, Color button_background, JButton button){
 		button.setText(button_name);
-		button.setBackground(button_color);
+		button.setBackground(button_background);
 		button.addActionListener(this);
 		this.add(button);
 	} 
@@ -156,7 +109,7 @@ public class myCanvas extends JFrame implements ActionListener// extends Canvas/
 	public void actionPerformed(ActionEvent e) {
 		for(int i=0; i<buttonList.size();i++){
 			JButton button = buttonList.get(i);
-			button.setBackground(button_color);
+			button.setBackground(button_background);
 		}
 		//blue button
 		if (e.getSource() == blue_btn) {
