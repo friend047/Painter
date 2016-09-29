@@ -22,6 +22,7 @@ import java.util.Iterator;
 
 public class myCanvas extends JFrame implements ActionListener// extends Canvas// //implements// MouseListener,// MouseMotionListener
 {
+	//test
 	JPanel panel;
 	//button declare
 	JButton color_select_btn = new JButton();
