@@ -26,9 +26,6 @@ public class myCanvas extends JFrame implements ActionListener// extends Canvas/
 	JPanel panel;
 	//button declare
 	JButton color_select_btn = new JButton();
-	JButton blue_btn = new JButton();
-	JButton red_btn = new JButton();
-	JButton white_btn = new JButton();
 	JButton clear_btn = new JButton();
 	JButton path_btn = new JButton();
 	JButton rect_btn = new JButton();
@@ -57,7 +54,6 @@ public class myCanvas extends JFrame implements ActionListener// extends Canvas/
 		// add select color button
 		initbutton("Color", button_background, color_select_btn);
 		color_select_btn.setBounds(512, 10, 72, 30);
-		
 		// add path button
 		initbutton("Path", button_background, path_btn);
 		path_btn.setBounds(512, 140, 72, 30);
@@ -111,14 +107,15 @@ public class myCanvas extends JFrame implements ActionListener// extends Canvas/
 			JButton button = buttonList.get(i);
 			button.setBackground(button_background);
 		}
-		//black button
+		//color select button
 		if (e.getSource() == color_select_btn) {
-			Color coloe_selected = JColorChooser.showDialog(myCanvas.this,
-		            "Choose a color...", getBackground());
+			Color color_selected = JColorChooser.showDialog(this,"Choose a color...", getBackground());
 			color_select_btn.setBackground(Color.LIGHT_GRAY);
 			buttonList.add(color_select_btn);
-			shape_color = coloe_selected;
-			repaint();
+			if(color_selected != null){
+				shape_color = color_selected;
+				repaint();
+			}
 		}
 		//path button
 		else if (e.getSource() == path_btn) {
@@ -204,9 +201,9 @@ public class myCanvas extends JFrame implements ActionListener// extends Canvas/
 	public void paint(Graphics g) {
 		super.paintComponents(g);
 		
-		g.setColor(shape_color); //set shape color
+		g.setColor(shape_color); //set selected color in rectangle
 		g.fillRect(515, 80, 72, 60);
-		g.setColor(Color.BLACK); //set shape color
+		g.setColor(Color.BLACK); //set rectangle frame
 		g.drawRect(515, 80, 72, 60);
 		
 		for(int i=0; i<shapeList.size();i++){
