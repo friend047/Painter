@@ -35,7 +35,7 @@ public class Mousemotionlistener implements MouseMotionListener, MouseListener {
 		case Path:
 			// Path
 			path = new Path();
-			path.setStrokeSize(canvas.line_stroke); // 設定粗細
+			path.setStrokeSize(canvas.line_stroke); //set shape stroke
 			path.setColor(canvas.shape_color);
 			canvas.shapeList.add(path);
 			break;
@@ -43,7 +43,7 @@ public class Mousemotionlistener implements MouseMotionListener, MouseListener {
 		case Rect:
 			// Rectangle
 			rectangle = new Rectangle();
-			rectangle.setStrokeSize(canvas.line_stroke); // 設定粗細
+			rectangle.setStrokeSize(canvas.line_stroke); //set shape stroke
 			rectangle.setOrigin(point);
 			rectangle.setColor(canvas.shape_color);
 			canvas.shapeList.add(rectangle);
@@ -52,7 +52,7 @@ public class Mousemotionlistener implements MouseMotionListener, MouseListener {
 		case Line:
 			// Line
 			line = new Line();
-			line.setStrokeSize(canvas.line_stroke); // 設定粗細
+			line.setStrokeSize(canvas.line_stroke); //set shape stroke
 			line.setOrigin(point);
 			line.setColor(canvas.shape_color);
 			// canvas.shapeList.remove(canvas.shapeList.size()-1);
@@ -62,7 +62,7 @@ public class Mousemotionlistener implements MouseMotionListener, MouseListener {
 		case Eraser:
 			// Eraser
 			path = new Path();
-			path.setStrokeSize(canvas.line_stroke); // 設定粗細
+			path.setStrokeSize(canvas.line_stroke); //set shape stroke
 			path.setColor(Color.WHITE);
 			// canvas.shapeList.remove(canvas.shapeList.size()-1);
 			canvas.shapeList.add(path);

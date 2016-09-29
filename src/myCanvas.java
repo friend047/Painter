@@ -4,9 +4,11 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.List;
 import java.awt.Stroke;
+import java.awt.TextField;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JColorChooser;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -22,8 +24,8 @@ public class myCanvas extends JFrame implements ActionListener// extends Canvas/
 {
 	JPanel panel;
 	//button declare
+	JButton color_select_btn = new JButton();
 	JButton blue_btn = new JButton();
-	JButton black_btn = new JButton();
 	JButton red_btn = new JButton();
 	JButton white_btn = new JButton();
 	JButton clear_btn = new JButton();
@@ -50,16 +52,11 @@ public class myCanvas extends JFrame implements ActionListener// extends Canvas/
 
 		panel = new JPanel(); //new a Panel
 		panel.setBounds(500, 0, 94, 472); //set panel size
-
-		// add black button
-		initbutton("Black", button_background, black_btn);
-		black_btn.setBounds(512, 10, 72, 30);
-		// add blue button
-		initbutton("Blue", button_background, blue_btn);
-		blue_btn.setBounds(512, 50, 72, 30);
-		// add red button
-		initbutton("Red", button_background, red_btn);
-		red_btn.setBounds(512, 90, 72, 30);
+		
+		// add select color button
+		initbutton("Color", button_background, color_select_btn);
+		color_select_btn.setBounds(512, 10, 72, 30);
+		
 		// add path button
 		initbutton("Path", button_background, path_btn);
 		path_btn.setBounds(512, 140, 72, 30);
@@ -87,7 +84,7 @@ public class myCanvas extends JFrame implements ActionListener// extends Canvas/
 		// add clear button
 		initbutton("clear", button_background, clear_btn);
 		clear_btn.setBounds(512, 432, 72, 30);
-
+		
 		this.add(panel); //add panel to frame
 		Mousemotionlistener mouse_listener = new Mousemotionlistener(this); //add mouse listener on frame
 		this.addMouseMotionListener(mouse_listener);
@@ -101,33 +98,26 @@ public class myCanvas extends JFrame implements ActionListener// extends Canvas/
 		button.addActionListener(this);
 		this.add(button);
 	} 
-	Shape_button shape_button = Shape_button.Path;
+	Shape_button shape_button = Shape_button.Path; //set the first draw shape
 	Shape remove_list;
 	Color shape_color;
-	double line_stroke = 1.0;
-	boolean initEraser = true;
+	double line_stroke = 1.0; //line stroke
+	boolean initEraser = true; 
+	
+	//button action listener
 	public void actionPerformed(ActionEvent e) {
 		for(int i=0; i<buttonList.size();i++){
 			JButton button = buttonList.get(i);
 			button.setBackground(button_background);
 		}
-		//blue button
-		if (e.getSource() == blue_btn) {
-			blue_btn.setBackground(Color.LIGHT_GRAY);
-			buttonList.add(blue_btn);
-			shape_color = Color.BLUE;
-		}
 		//black button
-		else if (e.getSource() == black_btn) {
-			black_btn.setBackground(Color.LIGHT_GRAY);
-			buttonList.add(black_btn);
-			shape_color = Color.BLACK;
-		}
-		//red button
-		else if (e.getSource() == red_btn) {
-			red_btn.setBackground(Color.LIGHT_GRAY);
-			buttonList.add(red_btn);
-			shape_color = Color.RED;
+		if (e.getSource() == color_select_btn) {
+			Color coloe_selected = JColorChooser.showDialog(myCanvas.this,
+		            "Choose a color...", getBackground());
+			color_select_btn.setBackground(Color.LIGHT_GRAY);
+			buttonList.add(color_select_btn);
+			shape_color = coloe_selected;
+			repaint();
 		}
 		//path button
 		else if (e.getSource() == path_btn) {
@@ -173,7 +163,6 @@ public class myCanvas extends JFrame implements ActionListener// extends Canvas/
 		else if (e.getSource() == eraser_btn) {
 			eraser_btn.setBackground(Color.LIGHT_GRAY);
 			buttonList.add(eraser_btn);
-			initEraser = true;
 			shape_button = Shape_button.Eraser;
 		}
 		//redo button
@@ -213,6 +202,12 @@ public class myCanvas extends JFrame implements ActionListener// extends Canvas/
 	@Override
 	public void paint(Graphics g) {
 		super.paintComponents(g);
+		
+		g.setColor(shape_color); //set shape color
+		g.fillRect(515, 80, 72, 60);
+		g.setColor(Color.BLACK); //set shape color
+		g.drawRect(515, 80, 72, 60);
+		
 		for(int i=0; i<shapeList.size();i++){
 			Shape shape = shapeList.get(i);
 			shape.draw(g);
