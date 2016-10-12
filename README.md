@@ -1,3 +1,3 @@
 # Painter
-Painter with different version
-![alt tag](https://gyazo.com/aa794fef4a9f1236309cec6793426656)
+What is my painter look like.
+![alt tag](https://github.com/friend047/Painter/blob/master/painter.gif)
